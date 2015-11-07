@@ -4,6 +4,7 @@ const ListApi = require('./handlers/api/list')
 const UserApi = require('./handlers/api/user')
 
 const Auth = require('./handlers/auth')
+const Home = require('./handlers/home')
 
 module.exports = [
   { method: 'POST', path: '/api/auth', handler: AuthApi.validate },
@@ -25,4 +26,6 @@ module.exports = [
   { method: 'GET', path: '/register', handler: Auth.register, config: { auth: 'session' }},
   { method: 'POST', path: '/login', handler: Auth.login, config: { auth: { mode: 'try', strategy: 'session' }, plugins: { 'hapi-auth-cookie': { redirectTo: false }}}},
   { method: 'GET', path: '/logout', handler: Auth.logout, config: { auth: 'session' }},
+
+  { method: 'GET', path: '/', handler: Home.index }
 ]
