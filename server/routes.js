@@ -3,6 +3,8 @@ const ItemApi = require('./handlers/api/item')
 const ListApi = require('./handlers/api/list')
 const UserApi = require('./handlers/api/user')
 
+const Auth = require('./handlers/auth')
+
 module.exports = [
   { method: 'POST', path: '/api/auth', handler: AuthApi.validate },
 
@@ -18,5 +20,9 @@ module.exports = [
 
   { method: 'POST', path: '/api/user', handler: UserApi.create },
   { method: 'DELETE', path: '/api/user/{id}', handler: UserApi.delete },
-  { method: 'GET', path: '/api/user/{id}', handler: UserApi.find }
+  { method: 'GET', path: '/api/user/{id}', handler: UserApi.find },
+
+  { method: 'GET', path: '/register', handler: Auth.register, config: { auth: 'session' }},
+  { method: 'POST', path: '/login', handler: Auth.login, config: { auth: { mode: 'try', strategy: 'session' }, plugins: { 'hapi-auth-cookie': { redirectTo: false }}}},
+  { method: 'GET', path: '/logout', handler: Auth.logout, config: { auth: 'session' }},
 ]
