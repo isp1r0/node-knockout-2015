@@ -23,7 +23,7 @@ exports.create = function (request, reply) {
       request.server.log([NAMESPACE, 'error'], err)
       return reply(Boom.badRequest(err.message))
     }
-    reply(createdUser[0]._id).code(200)
+    reply(createdUser[0]._id).code(201)
   })
 }
 
