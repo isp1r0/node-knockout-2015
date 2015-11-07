@@ -1,9 +1,10 @@
-const HapiMongoModels = require('hapi-mongo-models');
-const Path = require('path');
 
-const Config = require('../../config');
+const HapiMongoModels = require('hapi-mongo-models')
+const Path = require('path')
 
-var modelBasePath = './server/models/';
+const Config = require('../../config')
+
+var modelBasePath = './server/models/'
 
 module.exports = {
   register: HapiMongoModels,
@@ -18,4 +19,4 @@ module.exports = {
       User: Path.join(modelBasePath, 'user')
     }
   }
-};
+}
