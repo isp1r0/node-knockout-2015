@@ -10,6 +10,7 @@
     "hapi": "11.1.0",
     "hapi-auth-cookie": "3.1.0",
     "hapi-mongo-models": "3.0.0",
+    "hapi-react-views": "4.0.0",
     "joi": "7.0.0",
     "mongodb": "2.0.47",
     "object-assign": "4.0.1",
