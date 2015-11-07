@@ -13,6 +13,8 @@ module.exports = {
       options: {}
     },
     autoIndex: false,
-    models: {}
+    models: {
+      User: Path.join(modelBasePath, 'user')
+    }
   }
 };
