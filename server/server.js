@@ -10,6 +10,10 @@ const Routes = require('./routes')
 
 const NAMESPACE = 'server/server'
 
+require('babel-core/register')({
+  presets: ['react', 'es2015']
+});
+
 var server = new Hapi.Server()
 
 server.connection({
