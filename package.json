@@ -5,6 +5,7 @@
   "author": "Node Knockout Team <all@nodeknockout.com>",
   "main": "./app.js",
   "dependencies": {
+    "bcrypt": "0.8.5",
     "boom": "3.0.0",
     "hapi": "11.1.0",
     "hapi-mongo-models": "3.0.0",
