@@ -15,15 +15,11 @@ var User = BaseModel.extend({
 
 User._collection = 'users'
 
-function toLower(string) {
-  return string.toLowerCase()
-}
-
 User.schema = Joi.object().keys({
   _id: Joi.string().default(ShortId32.generate, 'Generate short id 32'),
-  email: Joi.string().required().email().trim().default(toLower, 'Make lower case'),
-  username: Joi.string().required().alphanum().min(2).max(20).trim().default(toLower, 'Make lower case'),
-  password: Joi.string().required().regex(/[a-zA-Z0-9]{3,30}/),
+  email: Joi.string().required().email().trim().lowercase(),
+  username: Joi.string().required().alphanum().min(2).max(20).trim().lowercase(),
+  password: Joi.string().required().regex(/[a-zA-Z0-9]{3,30}/).strip(),
   isAdmin: Joi.boolean().default(false),
   created: Joi.date().raw().default(Date.now, 'Registered'),
   updated: Joi.date().raw(),
