@@ -1,9 +1,11 @@
 const Hapi = require('hapi')
+const Vision = require('vision')
 
 const Config = require('../config')
 const Formatter = require('./utils/formatter')
 const HapiAuthCookie = require('./plugins/hapi-auth-cookie')
 const HapiMongoModels = require('./plugins/hapi-mongo-models')
+const HapiReactViews = require('hapi-react-views')
 const Routes = require('./routes')
 
 const NAMESPACE = 'server/server'
@@ -15,7 +17,7 @@ server.connection({
   port: Config.port
 })
 
-server.register([HapiAuthCookie, HapiMongoModels], function (err) {
+server.register([Vision, HapiAuthCookie, HapiMongoModels], function (err) {
   if (err) server.log([NAMESPACE, 'error'], err)
 
   server.auth.strategy('session', 'cookie', {
@@ -23,6 +25,15 @@ server.register([HapiAuthCookie, HapiMongoModels], function (err) {
     cookie: 'silentdistractions',
     redirectTo: '/login',
     isSecure: false
+  })
+
+  server.views({
+    engines: {
+      jsx: HapiReactViews
+    },
+    compileOptions: {},
+    relativeTo: __dirname,
+    path: '../client/pages'
   })
 
   server.route(Routes)
