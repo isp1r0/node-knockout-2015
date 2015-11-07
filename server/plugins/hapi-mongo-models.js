@@ -14,6 +14,7 @@ module.exports = {
     },
     autoIndex: false,
     models: {
+      List: Path.join(modelBasePath, 'list'),
       User: Path.join(modelBasePath, 'user')
     }
   }
