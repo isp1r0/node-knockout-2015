@@ -27,6 +27,7 @@ User.schema = Joi.object().keys({
 })
 
 User.indexes = [
+  [{ _id: 1 }, { unique: true }],
   [{ email: 1 }, { unique: true }],
   [{ username: 1 }, { unique: true }],
   [{ created: 1}, { unique: false }]
