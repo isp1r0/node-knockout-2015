@@ -3,6 +3,7 @@ const Hapi = require('hapi')
 const Config = require('../config')
 const Formatter = require('./utils/formatter')
 const HapiMongoModels = require('./plugins/hapi-mongo-models')
+const Routes = require('./routes')
 
 const NAMESPACE = 'server/server'
 
@@ -16,6 +17,7 @@ server.connection({
 server.register(HapiMongoModels, function (err) {
   if (err) server.log([NAMESPACE, 'error'], err)
 
+  server.route(Routes)
   server.start(function (err) {
     if (err) server.log([NAMESPACE, 'error'], err)
     server.log([NAMESPACE, 'info'], 'Starting server at ' + server.info.uri)
